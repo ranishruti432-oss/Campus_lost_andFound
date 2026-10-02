@@ -1,0 +1,126 @@
+/* Colors are CSS variables so they're easy to change (useful for dark mode later) */
+:root {
+  --bg: #f5f7fa;
+  --card: #ffffff;
+  --text: #1f2937;
+  --primary: #2563eb;
+  --lost: #dc2626;
+  --found: #16a34a;
+  --border: #d1d5db;
+}
+
+* { box-sizing: border-box; }
+
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+
+
+#view-home {
+  text-align: center;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   
+  align-items: center;       
+}
+
+#view-home .actions {
+  justify-content: center;  }
+
+
+#view-home[hidden] {
+  display: none;
+}
+
+
+body {
+  margin: 0;
+  font-family: system-ui, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.site-header {
+  background: var(--primary);
+  color: #fff;
+  padding: 12px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.site-header h1 { margin: 0; font-size: 1.3rem; }
+nav button {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+main { max-width: 960px; margin: 0 auto; padding: 20px; }
+
+.btn {
+  background: var(--primary);
+  color: #fff;
+  border: 2px solid var(--primary);
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.btn-outline { background: transparent; color: var(--primary); }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+
+/* Form */
+form { display: grid; gap: 6px; max-width: 520px; }
+label { font-weight: 600; margin-top: 8px; }
+input, select, textarea {
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font: inherit;
+  width: 100%;
+}
+.error { color: var(--lost); min-height: 1em; }
+
+/* Filters + cards */
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  cursor: pointer;
+}
+.card img, #detail-content img { max-width: 100%; border-radius: 6px; }
+.card h3 { margin: 8px 0 4px; }
+.badge {
+  display: inline-block;
+  color: #fff;
+  border-radius: 12px;
+  padding: 2px 10px;
+  font-size: 0.8rem;
+}
+.badge.lost { background: var(--lost); }
+.badge.found { background: var(--found); }
+.badge.resolved { background: #6b7280; }
+
+dialog { border: none; border-radius: 10px; max-width: 480px; width: 90%; }
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  main { padding: 12px; }
+  .site-header { flex-direction: column; align-items: flex-start; }
+}

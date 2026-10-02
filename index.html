@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campus Lost &amp; Found</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Campus Lost &amp; Found</h1>
+    <nav>
+      <button data-view="home">Home</button>
+      <button data-view="report" data-type="lost">Report Lost</button>
+      <button data-view="report" data-type="found">Report Found</button>
+      <button data-view="browse">Browse</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section id="view-home" class="view">
+      <h2>Lost something on campus? Found something?</h2>
+      <p>One place for students to report lost and found items, so you don't have to depend on WhatsApp groups.</p>
+      <div class="actions">
+        <button class="btn" data-view="report" data-type="lost">Report Lost Item</button>
+        <button class="btn" data-view="report" data-type="found">Report Found Item</button>
+        <button class="btn btn-outline" data-view="browse">Browse Items</button>
+      </div>
+    </section>
+
+    <!-- REPORT FORM (used for both lost and found) -->
+    <section id="view-report" class="view" hidden>
+      <h2 id="form-title">Report Lost Item</h2>
+      <form id="report-form" novalidate>
+        <input type="hidden" id="type" name="type" value="lost">
+
+        <label for="name">Item name *</label>
+        <input id="name" name="name" type="text">
+        <small class="error" id="error-name"></small>
+
+        <label for="category">Category *</label>
+        <select id="category" name="category">
+          <option value="">Select...</option>
+          <option>ID Card</option><option>Books</option><option>Wallet</option>
+          <option>Keys</option><option>Electronics</option><option>Bottle</option>
+          <option>Bag</option><option>Other</option>
+        </select>
+        <small class="error" id="error-category"></small>
+
+        <label for="description">Description *</label>
+        <textarea id="description" name="description" rows="3"></textarea>
+        <small class="error" id="error-description"></small>
+
+        <label for="location">Location *</label>
+        <input id="location" name="location" type="text" placeholder="e.g. Library, Block A">
+        <small class="error" id="error-location"></small>
+
+        <label for="date">Date *</label>
+        <input id="date" name="date" type="date">
+        <small class="error" id="error-date"></small>
+
+        <label for="contact">Contact information *</label>
+        <input id="contact" name="contact" type="text" placeholder="Email or phone">
+        <small class="error" id="error-contact"></small>
+
+        <label for="image">Image (optional, max 500 KB)</label>
+        <input id="image" name="image" type="file" accept="image/*">
+        <small class="error" id="error-image"></small>
+
+        <button class="btn" type="submit">Submit Report</button>
+      </form>
+    </section>
+
+    <!-- BROWSE -->
+    <section id="view-browse" class="view" hidden>
+      <h2>Browse Items</h2>
+      <div class="filters">
+        <input id="search" type="search" placeholder="Search by name or description">
+        <select id="filter-type">
+          <option value="">Lost &amp; Found</option>
+          <option value="lost">Lost</option>
+          <option value="found">Found</option>
+        </select>
+        <select id="filter-category"><option value="">All categories</option></select>
+        <input id="filter-location" type="text" placeholder="Location">
+      </div>
+      <div id="item-list" class="grid"></div>
+    </section>
+  </main>
+
+  <!-- ITEM DETAILS -->
+  <dialog id="detail-dialog">
+    <div id="detail-content"></div>
+    <button class="btn btn-outline" id="close-dialog">Close</button>
+  </dialog>
+
+  <script src="storage.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
