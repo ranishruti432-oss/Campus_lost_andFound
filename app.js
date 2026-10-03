@@ -47,6 +47,37 @@ function readImage(file) {
   });
 }
 
+const imageInput = document.getElementById("image");
+const previewContainer = document.getElementById("image-preview");
+const previewImg = document.getElementById("image-preview-img");
+
+function clearImagePreview() {
+  if (previewContainer && previewImg) {
+    previewContainer.hidden = true;
+    previewImg.src = "";
+  }
+}
+
+if (imageInput) {
+  imageInput.addEventListener("change", () => {
+    const file = imageInput.files[0];
+    if (!file) {
+      clearImagePreview();
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      if (previewImg && previewContainer) {
+        previewImg.src = e.target.result;
+        previewContainer.hidden = false;
+      }
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+form.addEventListener("reset", clearImagePreview);
+
 form.addEventListener("submit", async (event) => {
   event.preventDefault(); // stop the browser from reloading the page
   if (!validateForm()) return;
@@ -70,6 +101,7 @@ form.addEventListener("submit", async (event) => {
     return;
   }
   form.reset();
+  clearImagePreview();
   showView("browse");
 });
 

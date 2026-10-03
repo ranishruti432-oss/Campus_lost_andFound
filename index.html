@@ -66,6 +66,9 @@
 
         <label for="image">Image (optional, max 500 KB)</label>
         <input id="image" name="image" type="file" accept="image/*">
+        <div id="image-preview" class="image-preview" hidden>
+          <img id="image-preview-img" src="" alt="Selected image preview">
+        </div>
         <small class="error" id="error-image"></small>
 
         <button class="btn" type="submit">Submit Report</button>

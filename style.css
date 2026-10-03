@@ -84,6 +84,15 @@ input, select, textarea {
   width: 100%;
 }
 .error { color: var(--lost); min-height: 1em; }
+.image-preview { margin-top: 4px; }
+.image-preview[hidden] { display: none; }
+.image-preview img {
+  max-width: 160px;
+  max-height: 160px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
 
 /* Filters + cards */
 .filters {
