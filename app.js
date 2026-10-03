@@ -47,6 +47,34 @@ function readImage(file) {
   });
 }
 
+const successBanner = document.getElementById("success-banner");
+const closeSuccessBannerBtn = document.getElementById("close-success-banner");
+let successBannerTimer = null;
+
+function showSuccessBanner(message = "Report submitted successfully!") {
+  if (!successBanner) return;
+  const textEl = successBanner.querySelector("span");
+  if (textEl) textEl.textContent = message;
+  successBanner.hidden = false;
+  if (successBannerTimer) clearTimeout(successBannerTimer);
+  successBannerTimer = setTimeout(() => {
+    hideSuccessBanner();
+  }, 4000);
+}
+
+function hideSuccessBanner() {
+  if (!successBanner) return;
+  successBanner.hidden = true;
+  if (successBannerTimer) {
+    clearTimeout(successBannerTimer);
+    successBannerTimer = null;
+  }
+}
+
+if (closeSuccessBannerBtn) {
+  closeSuccessBannerBtn.addEventListener("click", hideSuccessBanner);
+}
+
 form.addEventListener("submit", async (event) => {
   event.preventDefault(); // stop the browser from reloading the page
   if (!validateForm()) return;
@@ -71,6 +99,7 @@ form.addEventListener("submit", async (event) => {
   }
   form.reset();
   showView("browse");
+  showSuccessBanner();
 });
 
 // ---------- 3. Showing, searching and filtering items ----------

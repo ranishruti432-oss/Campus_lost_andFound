@@ -84,6 +84,34 @@ input, select, textarea {
   width: 100%;
 }
 .error { color: var(--lost); min-height: 1em; }
+ 
+/* Banner */
+.banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+.banner[hidden] {
+  display: none;
+}
+.banner-success {
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+.banner-close {
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: inherit;
+  cursor: pointer;
+  padding: 0 4px;
+}
 
 /* Filters + cards */
 .filters {
