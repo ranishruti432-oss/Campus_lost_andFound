@@ -130,6 +130,16 @@ function renderItems() {
 [searchEl, typeEl, categoryEl, locationEl].forEach((el) =>
   el.addEventListener("input", renderItems)
 );
+const clearFiltersBtn = document.getElementById("clear-filters");
+
+clearFiltersBtn.addEventListener("click", () => {
+  searchEl.value = "";
+  typeEl.value = "";
+  categoryEl.value = "";
+  locationEl.value = "";
+
+  renderItems();
+});
 
 // ---------- 4. Item details + status ----------
 const dialog = document.getElementById("detail-dialog");
